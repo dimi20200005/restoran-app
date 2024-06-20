@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Pretraga</ion-title>
+    <ion-button slot="end">
+      <ion-tab-button size="small" color="tertiary" (click)="openModal()">
+        <ion-icon name="add">
+
+        </ion-icon>
+      </ion-tab-button>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <app-hrana-element *ngFor="let hrana of hrana" [hrana]="hrana" ></app-hrana-element>
+  </ion-list>
+  
+
+</ion-content>

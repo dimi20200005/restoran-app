@@ -1,0 +1,51 @@
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3" offset="3">
+        <ion-item>
+          <ion-input type="text" label="Name" label-position="floating" formControlName="name"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-item>
+          <ion-input type="text" label="Surname" label-position="floating" formControlName="surname"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" offset="3">
+        <ion-item>
+          <ion-input type="email" label="Email" label-position="floating" formControlName="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+      <ion-col size="6" offset="3">
+        <p>Should be a valid email address.</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" offset="3">
+        <ion-item>
+          <ion-input type="password" label="Password" label-position="floating" formControlName="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+      <ion-col size="6" offset="3">
+        <p>Should be minimum 7 characters long.</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" offset="3">
+        <ion-button type="submit" color="primary" shape="round" expand="block">Register</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</form>

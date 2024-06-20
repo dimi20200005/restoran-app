@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/hrana/tabs/pretraga">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Informacije o hrani</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="ion-padding">
+      <img [src]= "hrana.imageUrl" />
+      <ion-card-header>
+        <ion-card-title>{{ hrana.naziv }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{hrana.sastojci}}
+        <br>
+        {{hrana.kolicina}}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button color="primary" class="ion-margin">DODAJ</ion-button>
+</ion-content>
