@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Hrana } from './hrana/hrana.model.js';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 interface HranaData{
   naziv : string;
   upit: string;

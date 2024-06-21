@@ -2,12 +2,14 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="3" offset="3">
+      <ion-col size="6" offset="3">
         <ion-item>
           <ion-input type="text" label="Name" label-position="floating" formControlName="name"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col size="3">
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" offset="3">
         <ion-item>
           <ion-input type="text" label="Surname" label-position="floating" formControlName="surname"></ion-input>
         </ion-item>
@@ -49,3 +51,6 @@
   </ion-grid>
 
 </form>
+<ion-text color="danger" *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</ion-text>

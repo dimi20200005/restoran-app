@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,13 +9,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterPage implements OnInit {
   registerForm!: FormGroup; // Dodajemo '!' modifikator
+  errorMessage: string = '';
 
   
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      name: new FormControl('Ivana', Validators.required),
+      name: new FormControl(null, Validators.required),
       surname: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(7)])
@@ -23,7 +25,16 @@ export class RegisterPage implements OnInit {
 }
 onRegister() {
   console.log(this.registerForm);
- 
+  this.authService.register(this.registerForm.value).subscribe( resData =>
+    {
+      console.log('Registracija uspela');
+      console.log(resData);
+      this.errorMessage = '';
+    },error => {
+      // Handle error
+      this.errorMessage = this.authService.handleError(error);
+    }
+  )
 
 }
 }
