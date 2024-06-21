@@ -18,14 +18,12 @@ export class HranaModalComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
   dodajUpit() {
-    if (this.form.valid) {
-      return;
-    }
+    
     this.modalCtrl.dismiss(
       {
         hranaData: {
-          hrana: this.form.value['hrana'],
-          upit: this.form.value['upit']
+          naziv: this.form.value.naziv,
+          upit: this.form.value.upit
         }
       },
       'confirm'

@@ -1,6 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
 import { Hrana } from './hrana/hrana.model.js';
-
+import { HttpClient } from '@angular/common/http';
+interface HranaData{
+  naziv : string;
+  upit: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +28,14 @@ export class HranaService {
     }
   ];
 
-  constructor() {}
+  constructor(private http:HttpClient) {}
 
+  addHrana(naziv: string,upit: string) {
+    return this.http.post<{naziv:string,upit:string}>('https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana.json', {naziv,upit});
+  }
+  getHrane(){
+    return this.http.get<{[key:string]: HranaData}>('https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana.json')
+  }
   getHrana(id: string) {
     return this.hrana.find((h:Hrana) => h.id === id);
   }

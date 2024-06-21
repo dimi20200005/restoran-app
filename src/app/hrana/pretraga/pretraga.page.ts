@@ -18,14 +18,27 @@ export class PretragaPage implements OnInit {
   }
 
   ngOnInit() {
+    
   }
- openModal(){
+
+  openModal(){
   this.modalCtrl.create({
-component: HranaModalComponent,
+  component: HranaModalComponent,
+  componentProps: {title: "Upit za hranu"}
 
   }).then((modal: HTMLIonModalElement)=>{
     modal.present();
     return modal.onDidDismiss();
-  });
+  }).then((resultData) =>{
+    if (resultData.role === 'confirm'){
+      console.log(resultData);
+      this.hranaService.addHrana(resultData.data.hranaData.naziv, resultData.data.hranaData.upit).subscribe((res)=>{
+        console.log(res);
+      });
+    }
+
+  }
+
+  );
  }
 }

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
 <ion-title>
-  Dodaj
+  Zatraži hranu
 </ion-title>
 <ion-buttons>
   <ion-button (click)="onCancel()">
@@ -21,9 +21,9 @@
           <ion-item>
             <ion-input
               type="text"
-              label="Hrana"
+              label="Naziv hrane"
               label-placement="floating"
-              ngModel name="hrana"
+              ngModel name="naziv"
               required
             ></ion-input>
           </ion-item>
@@ -34,7 +34,7 @@
           <ion-item>
             <ion-textarea
               type="text"
-              label="Upit"
+              label="Opis"
               label-placement="floating"
               rows="6"
               ngModel name="upit"
@@ -50,9 +50,8 @@
             type="submit"
             color="primary"
             expand="block"
-            [disabled]="!f.valid"
-          >
-            Dodaj
+            [disabled]="f.invalid">
+            Pošalji upit
           </ion-button>
         </ion-col>
       </ion-row>
