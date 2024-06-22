@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Route, Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,7 @@ export class RegisterPage implements OnInit {
   errorMessage: string = '';
 
   
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private loadingCtrl: LoadingController,private router: Router) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -24,17 +26,20 @@ export class RegisterPage implements OnInit {
 
 }
 onRegister() {
-  console.log(this.registerForm);
-  this.authService.register(this.registerForm.value).subscribe( resData =>
-    {
-      console.log('Registracija uspela');
-      console.log(resData);
-      this.errorMessage = '';
-    },error => {
-      // Handle error
-      this.errorMessage = this.authService.handleError(error);
-    }
-  )
-
+  this.loadingCtrl.create({message: "Registrating..."}).then((loadingEl: HTMLIonLoadingElement)=>{
+    loadingEl.present();
+    this.authService.register(this.registerForm.value).subscribe( resData =>
+      {
+        console.log('Registracija uspela');
+        console.log(resData);
+        loadingEl.dismiss();
+        this.router.navigateByUrl('/hrana');
+        this.errorMessage = '';
+      },error => {
+        // Handle error
+        this.errorMessage = this.authService.handleError(error);
+      }
+    )
+  })
 }
 }

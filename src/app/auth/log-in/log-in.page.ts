@@ -10,16 +10,19 @@ import { NgForm } from '@angular/forms';
 })
 export class LogInPage implements OnInit {
 
+  isLoading = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onLogIn(logInForm: NgForm) {
+    this.isLoading = true;
     console.log(logInForm);
     this.authService.logIn(logInForm.value).subscribe(resData =>{
       console.log('prijava uspesna')
       console.log(resData)
+      this.isLoading = false;
       this.router.navigateByUrl('/hrana/tabs/pretraga');
     });
   }
