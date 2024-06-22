@@ -32,7 +32,7 @@ export class PretragaPage implements OnInit {
   }).then((resultData) =>{
     if (resultData.role === 'confirm'){
       console.log(resultData);
-      this.hranaService.addHrana(resultData.data.hranaData.naziv, resultData.data.hranaData.upit).subscribe((res)=>{
+      this.hranaService.addHrana(resultData.data.hranaData.naziv, resultData.data.hranaData.upit).subscribe((res: any)=>{
         console.log(res);
       });
     }

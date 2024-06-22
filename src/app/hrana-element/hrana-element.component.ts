@@ -13,7 +13,8 @@ export class HranaElementComponent implements OnInit {
     naziv: 'Pasta Carbonara',
     sastojci: 'Penne testenina,Jaja,Slanina,Biber,Parmezan',
     kolicina: '550g',
-    imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg'
+    imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg',
+    userId:''
   };
 
   constructor(private alertCtrl: AlertController) { }
