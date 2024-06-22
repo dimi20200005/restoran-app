@@ -9,11 +9,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./log-in.page.scss'],
 })
 export class LogInPage implements OnInit {
-
+  defaultEmail: string = "";
+  defaultPass: string = "";
   isLoading = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.defaultEmail = 'Dimi@gmail.com';
+    this.defaultPass = '1234567';
   }
 
   onLogIn(logInForm: NgForm) {

@@ -12,7 +12,7 @@
         <ion-list>
           <ion-item>
            <!-- <ion-label position="floating">Email</ion-label> >-->
-            <ion-input type="email" label="Email" label-placement="floating" name="email" ngModel email required #email="ngModel"></ion-input>
+            <ion-input type="email" label="Email" label-placement="floating" name="email" [(ngModel)]="defaultEmail" ngModel email required #email="ngModel"></ion-input>
           </ion-item>
 
           <ion-item lines="none" *ngIf="email.invalid && email.touched">
@@ -20,7 +20,7 @@
           </ion-item>
           <ion-item>
             
-            <ion-input type="password" label="Password" label-placement="floating" ngModel name="password" minlength="7" required #password="ngModel"></ion-input>
+            <ion-input type="password" label="Password" label-placement="floating" [(ngModel)]="defaultPass" ngModel name="password" minlength="7" required #password="ngModel"></ion-input>
           </ion-item>
 
           <ion-item lines="none" *ngIf="password.invalid && password.touched">
