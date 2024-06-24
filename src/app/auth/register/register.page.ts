@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Route, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { AlertController, AlertInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -11,10 +12,9 @@ import { LoadingController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
   registerForm!: FormGroup; // Dodajemo '!' modifikator
-  errorMessage: string = '';
 
   
-  constructor(private authService: AuthService,private loadingCtrl: LoadingController,private router: Router) { }
+  constructor(private authService: AuthService,private loadingCtrl: LoadingController,private router: Router,private alertCtrl : AlertController) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -34,10 +34,18 @@ onRegister() {
         console.log(resData);
         loadingEl.dismiss();
         this.router.navigateByUrl('/hrana');
-        this.errorMessage = '';
       },error => {
-        // Handle error
-        this.errorMessage = this.authService.handleError(error);
+        loadingEl.dismiss();
+        let message = "Fill all the fields!";
+      
+      this.alertCtrl.create({
+        header:"Registration failed",
+        message,
+        buttons:["Okay"]
+      }).then((alert)=>{
+        alert.present();
+      })
+        
       }
     )
   })
