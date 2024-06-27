@@ -3,6 +3,7 @@ import {Hrana} from "../hrana.model";
 import { HranaService } from 'src/app/hrana.service';
 import { ModalController } from '@ionic/angular';
 import { HranaModalComponent } from '../hrana-modal/hrana-modal.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { HranaModalComponent } from '../hrana-modal/hrana-modal.component';
 export class PretragaPage implements OnInit {
   hrana: Hrana[];
 
-  constructor(private hranaService: HranaService,private modalCtrl: ModalController) {
+  constructor(private hranaService: HranaService,private modalCtrl: ModalController,public authService: AuthService) {
     this.hrana = this.hranaService.hrana;
   }
 

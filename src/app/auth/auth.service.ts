@@ -18,7 +18,8 @@ interface UserData{
   name?:string,
   surname?:string,
   email: string,
-  password: string
+  password: string,
+  role: string
 }
 
 @Injectable({
@@ -26,7 +27,8 @@ interface UserData{
 })
 export class AuthService {
   private _isUserAuthenticated = false;
-  private _user = new BehaviorSubject<User>(new User("","","",new Date));
+  private adminEmail = 'dimi@gmail.com';
+  private _user = new BehaviorSubject<User>(new User("","","",new Date,""));
   constructor(private http:HttpClient) { }
 
   get isUserAuthenticated(){
@@ -52,6 +54,17 @@ export class AuthService {
       })
     )
   }
+  get role() {
+    return this._user.asObservable().pipe(
+      map((user) => {
+        if (user) {
+          return user.role;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
   get token(){
     return this._user.asObservable().pipe(
       map((user)=>{
@@ -69,7 +82,7 @@ export class AuthService {
       {email: user.email,password:user.password,returnSecureToken: true}
     ).pipe(tap((userData) =>{
       const expirationTime = new Date(new Date().getTime() + +userData.expiresIn * 1000);
-      const user = new User(userData.localId,userData.email,userData.idToken,expirationTime);
+      const user = new User(userData.localId,userData.email,userData.idToken,expirationTime,"user");
       this._user.next(user);
     }));
   }
@@ -78,15 +91,16 @@ export class AuthService {
     return this.http.post<AuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`,
       {email: user.email,password:user.password,returnSecureToken: true}
     ).pipe(tap((userData) =>{
+      const role = userData.email === this.adminEmail ? 'admin' : 'user';
       const expirationTime = new Date(new Date().getTime() + +userData.expiresIn * 1000);
-      const user = new User(userData.localId,userData.email,userData.idToken,expirationTime);
+      const user = new User(userData.localId,userData.email,userData.idToken,expirationTime,role);
       this._user.next(user);
     }))
     ;
   }
 
   logOut() {
-    this._user.next(new User("","","",new Date));
+    this._user.next(new User("","","",new Date,""));
   }
   public handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
