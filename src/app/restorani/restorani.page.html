@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/hrana"> </ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Restorani</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <app-restoran-element *ngFor="let restoran of restoran" [restoran]="restoran" (click)="onRestoranSelected(restoran.id)" ></app-restoran-element>
+  </ion-list>
+  
+
+</ion-content>

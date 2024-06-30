@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/hrana/tabs/restorani">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Informacije o restoranu </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="ion-padding">
+      <img [src]= "restoran.slikaUrl" />
+      <ion-card-header>
+        <ion-card-title>{{ restoran.naziv }}</ion-card-title>
+        <a [href]="restoran.sajt" target="_blank">{{ restoran.naziv }}</a>
+      </ion-card-header>
+      <ion-card-content>
+        {{restoran.lokacija}}
+        <br>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>

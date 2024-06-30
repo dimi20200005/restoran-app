@@ -30,8 +30,9 @@ export class HranaInfoPage implements OnInit {
         if (foundHrana !== undefined) {
           this.hrana = foundHrana;
         } else {
-          // Usluga nije pronađena, možete obraditi ovu situaciju na odgovarajući način
-        }
+          console.log("nije pronadjen id")
+
+         }
       }
     });
   }

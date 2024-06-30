@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ONamaPage } from './o-nama.page';
+import { RestoranInfoPage } from './restoran-info.page';
 
-describe('ONamaPage', () => {
-  let component: ONamaPage;
-  let fixture: ComponentFixture<ONamaPage>;
+describe('RestoranInfoPage', () => {
+  let component: RestoranInfoPage;
+  let fixture: ComponentFixture<RestoranInfoPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ONamaPage);
+    fixture = TestBed.createComponent(RestoranInfoPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

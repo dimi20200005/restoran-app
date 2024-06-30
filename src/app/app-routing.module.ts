@@ -12,11 +12,7 @@ const routes: Routes = [
     path: 'hrana/:hranaId', // Dodajemo ':hranaId' kao deo putanje
     loadChildren: () => import('./hrana/hrana.module').then( m => m.HranaPageModule)
   },
-  {
-    path: 'o-nama',
-    loadChildren: () => import('./o-nama/o-nama.module').then( m => m.ONamaPageModule),
-    canLoad: [AuthGuard]
-  },
+
   {
     path: '',
     redirectTo: 'hrana',
@@ -30,7 +26,13 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
-  
+  {
+    path: 'restorani',
+    loadChildren: () => import('./restorani/restorani.module').then( m => m.RestoraniPageModule)
+  },
+  {
+  path: 'restorani/:id',
+  loadChildren: () => import('./restorani/restorani.module').then( m => m.RestoraniPageModule)  }
 ];
 
 @NgModule({

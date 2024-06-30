@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ONamaPageRoutingModule } from './o-nama-routing.module';
+import { RestoranInfoPageRoutingModule } from './restoran-info-routing.module';
 
-import { ONamaPage } from './o-nama.page';
+import { RestoranInfoPage } from './restoran-info.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ONamaPageRoutingModule
+    RestoranInfoPageRoutingModule
   ],
-  declarations: [ONamaPage]
+  declarations: [RestoranInfoPage]
 })
-export class ONamaPageModule {}
+export class RestoranInfoPageModule {}
