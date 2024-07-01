@@ -5,6 +5,7 @@ export class Restoran {
     public lokacija: string,
     public slikaUrl: string,
     public ocena: number,
+    public brojOcena: number,
     public sajt: string
     ){}
   }

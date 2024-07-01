@@ -8,14 +8,18 @@ import { RestoraniPageRoutingModule } from './restorani-routing.module';
 
 import { RestoraniPage } from './restorani.page';
 import { RestoranElementComponent } from './restoran-element/restoran-element.component';
+import { StarRatingModule2 } from '../star-rating/star-rating.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RestoraniPageRoutingModule
+    RestoraniPageRoutingModule,
+    StarRatingModule2
   ],
-  declarations: [RestoraniPage,RestoranElementComponent]
+  declarations: [RestoraniPage,RestoranElementComponent],
+ 
+
 })
 export class RestoraniPageModule {}

@@ -1,0 +1,10 @@
+.star-rating {
+    display: flex;
+    ion-icon {
+      font-size: 2rem;
+      color: gray;
+      &.filled {
+        color: gold;
+      }
+    }
+  }

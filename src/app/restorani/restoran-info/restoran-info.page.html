@@ -20,6 +20,8 @@
       <ion-card-content>
         {{restoran.lokacija}}
         <br>
+        <app-star-rating [rating]="restoran.ocena" [brojOcena]="restoran.brojOcena" ></app-star-rating>
+
       </ion-card-content>
     </ion-card>
 

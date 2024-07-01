@@ -17,6 +17,7 @@ export class RestoranInfoPage implements OnInit {
     lokacija: 'Opis restorana A',
     slikaUrl: 'path/to/imageA.jpg',
     ocena: 4,
+    brojOcena: 130,
     sajt: 'https://burgerhousebros.com/'
   };
   constructor(private route: ActivatedRoute, private restoranService: RestoranService) { }

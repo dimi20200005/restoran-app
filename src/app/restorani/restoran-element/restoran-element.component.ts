@@ -13,6 +13,7 @@ export class RestoranElementComponent  implements OnInit {
     lokacija: 'Opis restorana A',
     slikaUrl: 'path/to/imageA.jpg',
     ocena: 4,
+    brojOcena: 10,
     sajt: 'https://burgerhousebros.com/'
   };
   @Output() selected = new EventEmitter<void>();

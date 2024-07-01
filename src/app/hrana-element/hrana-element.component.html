@@ -1,11 +1,11 @@
-<ion-item >
- <ion-item [routerLink]="['/','hrana','tabs','pretraga', hrana.id]"> 
-  <ion-avatar slot="start">
-    <ion-img [src]="hrana.imageUrl">
-    </ion-img>
-  </ion-avatar>
-  <ion-label> {{hrana.naziv}} </ion-label>
- </ion-item>
- 
-  <ion-icon name="bag-add-outline" color="tertiary" slot="end" (click)="openAlart()" ></ion-icon>
+<ion-item>
+  <ion-item [routerLink]="['/', 'hrana', 'tabs', 'pretraga', hrana.id]">
+    <ion-avatar slot="start">
+      <ion-img [src]="hrana.imageUrl"></ion-img>
+    </ion-avatar>
+    <ion-label>{{ hrana.naziv }}</ion-label>
+  </ion-item>
+
+  <ion-icon name="bag-add-outline" color="tertiary" slot="end" (click)="openModal(hrana.naziv)"></ion-icon>
 </ion-item>
+

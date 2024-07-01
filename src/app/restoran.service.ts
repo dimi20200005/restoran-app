@@ -12,6 +12,7 @@ export class RestoranService {
       lokacija: 'Kralja Petra 10, Belgrade 11000 Serbia',
       slikaUrl: 'https://cafebarrestoran.rs/wp-content/uploads/2023/09/Burger-House-Bros-glavna-fotografija.jpg',
       ocena: 4.5,
+      brojOcena: 100,
       sajt:'https://burgerhousebros.com/'
     },
     {
@@ -20,6 +21,7 @@ export class RestoranService {
       lokacija: 'Strahinjića Bana 3, Belgrade, Serbia',
       slikaUrl: 'https://lh3.googleusercontent.com/p/AF1QipMou7iXKjSeehDTe9H9raLouVlsQzy22dEea2Vt=s1360-w1360-h1020',
       ocena: 4,
+      brojOcena: 120,
       sajt: 'https://www.instagram.com/fatboys.bg/'
     },
     {
@@ -28,6 +30,7 @@ export class RestoranService {
       lokacija: 'Omladinskih brigada 18b, Belgrade, Serbia',
       slikaUrl: 'https://www.011info.com/uploads/Firma/2021/07/20/43961/3.jpg',
       ocena: 4,
+      brojOcena: 160,
       sajt: 'https://smashburgers.rs/'
     },
     {
@@ -36,6 +39,7 @@ export class RestoranService {
       lokacija: 'Uroša Martinovića 31, Novi Beograd',
       slikaUrl: 'https://mozzarella.rs/wp-content/uploads/2015/07/onama1.jpg',
       ocena: 4,
+      brojOcena: 130,
       sajt: 'https://mozzarella.rs/'
     },
     {
@@ -43,7 +47,9 @@ export class RestoranService {
       naziv: 'Casa Nova',
       lokacija: 'Uroša Martinovića 31, Novi Beograd',
       slikaUrl: 'https://www.casanova.rs/img/gallery/4.jpg',
-      ocena: 4,
+      ocena: 3,
+      brojOcena: 125,
+
       sajt: 'https://www.casanova.rs/'
     },
     {
@@ -52,6 +58,7 @@ export class RestoranService {
       lokacija: 'Nebojšina 8, Beograd',
       slikaUrl: 'https://www.011info.com/uploads/Firma/2011/12/26/18397/2a.jpg',
       ocena: 4.7,
+      brojOcena: 89,
       sajt: 'https://www.amicirestoran.rs/'
     },
     {
@@ -60,6 +67,7 @@ export class RestoranService {
       lokacija: 'Bulevar Mihajla Pupina 165v, Beograd',
       slikaUrl: 'https://pizzabar.rs/wp-content/uploads/2022/03/HI_MIC_0424-1.jpg',
       ocena: 4.7,
+      brojOcena: 190,
       sajt: 'https://pizzabar.rs/'
     },
     {
@@ -68,14 +76,17 @@ export class RestoranService {
       lokacija: 'Bežanijska 36, Beograd 11080',
       slikaUrl: 'https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/cf/c0/03/bosiljak-pizza-napoletana.jpg',
       ocena: 4.7,
+      brojOcena: 155,
       sajt: 'https://www.bosiljakpizza.com/'
     },
     {
+
       id: 'r9',
       naziv: 'Majstor i Margarita',
       lokacija: 'Balkanska 16, Belgrade Serbia',
       slikaUrl: 'https://www.dizajnenterijera.rs/wp-content/uploads/2023/08/picerija-majstor-margarita-beograd-zabriskie-02.jpg',
       ocena: 4.7,
+      brojOcena:150,
       sajt: 'https://majstorimargarita.rs/'
     }
    
