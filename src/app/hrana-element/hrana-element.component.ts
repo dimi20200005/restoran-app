@@ -24,34 +24,35 @@ export class HranaElementComponent implements OnInit {
   ngOnInit(){
     
   }
-  openModal(hranaNaziv: string) {
+  openModal(hrana: Hrana) {
     // Simulating restorani data for demonstration purposes
     let restorani: Restoran[] = [];
    
-      if (hranaNaziv === 'Pasta Carbonara') {
+      if (hrana.naziv === 'Pasta Carbonara') {
         restorani=[
-      {
-        id: 'r8',
-        naziv: 'Bosiljak Pizza Napoletana',
-        lokacija: 'Bežanijska 36, Beograd 11080',
-        slikaUrl: 'https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/cf/c0/03/bosiljak-pizza-napoletana.jpg',
-        ocena: 3,
-        brojOcena: 10,
-        sajt: 'https://www.bosiljakpizza.com/'
-      },
-      {
-        id: 'r9',
-        naziv: 'Majstor i Margarita',
-        lokacija: 'Balkanska 16, Belgrade Serbia',
-        slikaUrl: 'https://www.dizajnenterijera.rs/wp-content/uploads/2023/08/picerija-majstor-margarita-beograd-zabriskie-02.jpg',
-        ocena: 4.7,
-        brojOcena: 150,
-        sajt: 'https://majstorimargarita.rs/'
-      }
+          {
+            id: 'r5',
+            naziv: 'Casa Nova',
+            lokacija: 'Uroša Martinovića 31, Novi Beograd',
+            slikaUrl: 'https://www.casanova.rs/img/gallery/4.jpg',
+            ocena: 3,
+            brojOcena: 125,
+      
+            sajt: 'https://www.casanova.rs/'
+          },
+          {
+            id: 'r6',
+            naziv: 'Amci',
+            lokacija: 'Nebojšina 8, Beograd',
+            slikaUrl: 'https://www.011info.com/uploads/Firma/2011/12/26/18397/2a.jpg',
+            ocena: 4.7,
+            brojOcena: 89,
+            sajt: 'https://www.amicirestoran.rs/'
+          }
     ]
     }
 
-  else if(hranaNaziv === 'Burger'){
+  else if(hrana.naziv === 'Burger'){
     restorani=[
       {
         id: 'r1',
@@ -83,37 +84,11 @@ export class HranaElementComponent implements OnInit {
     ];
   }
   if (restorani.length === 0) {
-    console.error('Nema restorana za zadati naziv hrane:', hranaNaziv);
+    console.error('Nema restorana za zadati naziv hrane:', hrana.naziv);
 } else {
     // Otvaranje modala sa pronađenim restoranima
-    this.modalService.openModal(restorani);
+    this.modalService.openModal(restorani,hrana);
 }  }
-  openAlart(){
-     this.alertCtrl.create({
-      header: 'Korpa',
-      message: 'Da li ste sigurni da zelite da dododate ovaj proizvod u korpu?',
-      buttons: [
-        {
-          text:'Dodaj',
-          handler: ()=>{
-            console.log('sacuvaj')
-          }
-     },
-     {
-      text:'Odustani',
-      role: 'cancel',
-      handler: ()=>{
-        console.log('odustani')
-      }
-
-        
-     }
-    ]
-
-     }).then((alert: HTMLIonAlertElement)=> {
-      alert.present();
-
-     });
-  }
+  
 
 }

@@ -1,0 +1,43 @@
+ion-header {
+    --background: #3880ff;
+    color: #fff;
+  }
+  
+  ion-title {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  ion-item {
+    --padding-start: 16px;
+    --inner-padding-end: 8px;
+    --inner-padding-top: 8px;
+    --inner-padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  ion-label h2 {
+    font-size: 1.2em;
+    margin-bottom: 4px;
+  }
+  
+  ion-label p {
+    margin: 0;
+    color: #666;
+  }
+  
+  ion-thumbnail {
+    --size: 60px;
+  }
+  
+  ion-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .item-price {
+    font-weight: bold;
+    float: right;
+    color: var(--ion-color-danger); /* Koristi varijablu za boju "danger" */
+}
+  

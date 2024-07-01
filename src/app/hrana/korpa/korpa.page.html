@@ -1,14 +1,39 @@
 <ion-header>
   <ion-toolbar>
-
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-title>Vaša Korpa</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/"><ion-icon name="arrow-back-circle-outline"></ion-icon></ion-button>
     </ion-buttons>
-
-    <ion-title>Korpa</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item *ngFor="let hrana of korpa">
+      <ion-thumbnail slot="start">
+        <img [src]="hrana.imageUrl" alt="{{hrana.naziv}}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ hrana.naziv }}</h2>
+        <p>{{ hrana.restoran?.naziv }}</p>
+        <p><strong>Cena:</strong> <span class="item-price"> {{ hrana.cena }} RSD</span></p>
+      </ion-label>
+      <ion-button color="danger" fill="clear" slot="end" (click)="obrisiIzKorpe(hrana)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 
+  <ion-item lines="none">
+    <ion-label>
+      <h2>Ukupna Cena: </h2>
+    </ion-label>
+    <ion-note  color="danger" slot="end">{{ ukupnaCena | currency: 'RSD ': 'symbol' }}</ion-note>
+  </ion-item>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-button expand="full" color="primary" routerLink="/restorani">Oceni restoran </ion-button>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
