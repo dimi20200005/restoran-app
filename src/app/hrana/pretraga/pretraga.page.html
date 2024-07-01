@@ -5,7 +5,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-title>Pretraga</ion-title>
+    <ion-title>Meni</ion-title>
     <ion-button slot="end" [ngClass]="{ 'hide-button': (authService.role | async) !== 'admin' }">
       <ion-tab-button size="small" color="tertiary" (click)="openModal()">
         <ion-icon name="add">
@@ -16,12 +16,14 @@
 
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Pretraži hranu" debounce="500" (ionInput)="filterItems()" style="display: block; margin: 0 auto; text-align: center;"></ion-searchbar>
   <ion-list>
-    <app-hrana-element *ngFor="let hrana of hrana" [hrana]="hrana" ></app-hrana-element>
+    <app-hrana-element *ngFor="let hrana of filteredHrana" [hrana]="hrana" ></app-hrana-element>      <ion-label>
+        
+      </ion-label>
   </ion-list>
-  
-
 </ion-content>
+
+
+

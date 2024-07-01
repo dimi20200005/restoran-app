@@ -15,7 +15,9 @@ import { HranaModalComponent } from '../hrana-modal/hrana-modal.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    PretragaPageRoutingModule
+    PretragaPageRoutingModule,
+    FormsModule
+     
   ],
   declarations: [PretragaPage, HranaElementComponent,HranaModalComponent]
   

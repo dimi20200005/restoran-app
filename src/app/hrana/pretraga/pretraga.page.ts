@@ -13,15 +13,23 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class PretragaPage implements OnInit {
   hrana: Hrana[];
+  searchTerm: string = ''; // Deklaracija searchTerm
+  filteredHrana: Hrana[] = [];
+
 
   constructor(private hranaService: HranaService,private modalCtrl: ModalController,public authService: AuthService) {
     this.hrana = this.hranaService.hrana;
   }
 
   ngOnInit() {
-    
+    this.filteredHrana = this.hrana;
   }
-
+  filterItems() {
+    const searchTermLower = this.searchTerm.toLowerCase();
+    this.filteredHrana = this.hrana.filter(hrana =>
+      hrana.naziv.toLowerCase().includes(searchTermLower)
+    );
+  }
   openModal(){
   this.modalCtrl.create({
   component: HranaModalComponent,

@@ -9,11 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RestoraniHraneComponent } from './restorani-hrane/restorani-hrane.component';
 import { StarRatingModule2 } from './star-rating/star-rating.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [AppComponent,RestoraniHraneComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,StarRatingModule2],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,StarRatingModule2,FormsModule ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
