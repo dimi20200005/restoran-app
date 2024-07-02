@@ -22,12 +22,14 @@ export class PretragaPage implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredHrana = this.hrana;
-    this.hranaService.hrane.subscribe((hrana) => {
-      this.hrana = hrana; // Postavljanje novih podataka hrane na postojeći niz
+    this.hranaService.hrane.subscribe(hrane => {
+      this.hrana = hrane;
+      this.filteredHrana = hrane;
     });
-  
+    this.hranaService.getHrane().subscribe();
   }
+  
+  
   filterItems() {
     const searchTermLower = this.searchTerm.toLowerCase();
     this.filteredHrana = this.hrana.filter(hrana =>
