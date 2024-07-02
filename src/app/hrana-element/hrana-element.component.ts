@@ -16,7 +16,8 @@ export class HranaElementComponent implements OnInit {
     sastojci: 'Penne testenina,Jaja,Slanina,Biber,Parmezan',
     kolicina: '550g',
     imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg',
-    userId:''
+    userId:'',
+    tipHrane:''
   };
 
   constructor(private alertCtrl: AlertController,private modalService: PrikazRestoranaHranaService) { }

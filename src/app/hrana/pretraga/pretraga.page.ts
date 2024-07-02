@@ -15,7 +15,7 @@ export class PretragaPage implements OnInit {
   hrana: Hrana[];
   searchTerm: string = ''; // Deklaracija searchTerm
   filteredHrana: Hrana[] = [];
-
+  selectedType: string = ''; 
 
   constructor(private hranaService: HranaService,private modalCtrl: ModalController,public authService: AuthService) {
     this.hrana = this.hranaService.hrana;
@@ -27,9 +27,19 @@ export class PretragaPage implements OnInit {
   filterItems() {
     const searchTermLower = this.searchTerm.toLowerCase();
     this.filteredHrana = this.hrana.filter(hrana =>
-      hrana.naziv.toLowerCase().includes(searchTermLower)
+      hrana.naziv.toLowerCase().includes(searchTermLower) &&
+      (this.selectedType === '' || hrana.tipHrane === this.selectedType)
     );
   }
+
+
+
+  filterByType(type: string) {
+    this.selectedType = type;
+    this.filterItems();
+  }
+
+
   openModal(){
   this.modalCtrl.create({
   component: HranaModalComponent,

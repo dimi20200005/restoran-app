@@ -18,6 +18,7 @@ export class HranaInfoPage implements OnInit {
       kolicina: '550g',
       imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg',
       userId: '',
+      tipHrane:''
     }
   ;
   constructor(private route: ActivatedRoute, private hranaService: HranaService) { }

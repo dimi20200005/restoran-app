@@ -24,7 +24,8 @@ export class HranaService {
       sastojci: 'Penne testenina,Jaja,Slanina,Biber,Parmezan',
       kolicina: '550g',
       userId:"",
-      imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg'
+      imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg',
+      tipHrane: 'Italijanska'
     },
     {
       id: 'h2',
@@ -32,7 +33,8 @@ export class HranaService {
       sastojci: 'Duplo juneće meso, Čedar sir, Kiseli krastavci, Kečap, Senf, Luk',
       kolicina: '700g',
       userId:"",
-      imageUrl: 'https://recipes.net/wp-content/uploads/2023/05/hardees-double-cheeseburger-recipe_d48b79ef43b714e98a3ad95a7ab9e12e-768x768.jpeg'
+      imageUrl: 'https://recipes.net/wp-content/uploads/2023/05/hardees-double-cheeseburger-recipe_d48b79ef43b714e98a3ad95a7ab9e12e-768x768.jpeg',
+      tipHrane: 'Američka'
     }
   ];
 
@@ -51,6 +53,7 @@ export class HranaService {
           upit,
           '',
           'https://recipes.net/wp-content/uploads/2023/05/hardees-double-cheeseburger-recipe_d48b79ef43b714e98a3ad95a7ab9e12e-768x768.jpeg',
+          '',
           ''
         );
         return this.http.post<{ name: string }>(
