@@ -1,14 +1,16 @@
 import { Inject, Injectable } from '@angular/core';
 import { Hrana } from './hrana/hrana.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, switchMap, take, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap, take, tap } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 
 interface HranaData{
+  id: string;
   naziv : string;
-  upit: string;
+  sastojci: string;
+  kolicina:string;
   imageUrl: string;
-  userId: string;
+  tipHrane: string;
 }
 
 @Injectable({
@@ -16,6 +18,7 @@ interface HranaData{
 })
 export class HranaService {
   private _hrana = new BehaviorSubject<Hrana[]>([]);
+  private hranaLoaded = false;
 
    hrana: Hrana[] = [
     {
@@ -69,42 +72,64 @@ export class HranaService {
 
   constructor(private http:HttpClient,private authService : AuthService) {}
 
-  addHrana(naziv: string, upit: string) {
-    let generatedId: string;
+  addHrana(naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
     let newHrana: Hrana;
 
     return this.authService.userId.pipe(
-      take(1),
-      switchMap(userId => {
-        newHrana = new Hrana(
-          '',
-          naziv,
-          upit,
-          '',
-          'https://recipes.net/wp-content/uploads/2023/05/hardees-double-cheeseburger-recipe_d48b79ef43b714e98a3ad95a7ab9e12e-768x768.jpeg',
-          '',
-          ''
-        );
-        return this.http.post<{ name: string }>(
+      tap(userId => {
+        if (!userId) {
+          throw new Error('User not authenticated');
+        }
+        newHrana = new Hrana( naziv, sastojci, kolicina, imageUrl, userId, tipHrane);
+      }),
+      tap(() => {
+        this.http.post<{ name: string }>(
           'https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana.json',
           newHrana
-        );
-      }),
-      switchMap(resData => {
-        generatedId = resData.name;
-        return this.hrana;
-      }),
-      take(1),
-      tap(hrana => {
-        newHrana.id = generatedId;
-        this._hrana.next(this.hrana.concat(newHrana));
+        ).subscribe(resData => {
+          newHrana.id = resData.name;
+          this._hrana.next([...this._hrana.value, newHrana]);
+        });
       })
     );
   }
 
-  getHrane(){
-    return this.http.get<{[key:string]: HranaData}>('https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana.json')
+ 
+  get hrane() {
+    return this._hrana.asObservable();
   }
+
+  
+  getHrane() {
+    return this.http.get<{ [key: string]: Hrana }>('https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana.json')
+    .pipe(
+      take(1),
+      switchMap(responseData => {
+        const hranaArray: Hrana[] = [];
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            const hrana: Hrana = {
+              id: key,
+              naziv: responseData[key].naziv,
+              sastojci: responseData[key].sastojci,
+              kolicina: responseData[key].kolicina,
+              imageUrl: responseData[key].imageUrl,
+              tipHrane: responseData[key].tipHrane
+            };
+
+            // Provera da li već postoji hrana sa istim id-jem ili nazivom
+            if (!hranaArray.some(h => h.id === hrana.id || h.naziv === hrana.naziv)) {
+              hranaArray.push(hrana);
+            }
+          }
+        }
+        return hranaArray;
+      }),
+      
+    );
+}
+
+  
   getHrana(id: string) {
     return this.hrana.find((h:Hrana) => h.id === id);
   }

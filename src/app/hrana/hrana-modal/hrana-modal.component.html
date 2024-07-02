@@ -1,8 +1,7 @@
 <ion-header>
   <ion-toolbar>
 <ion-title>
-  Zatraži hranu
-</ion-title>
+Dodaj hranu</ion-title>
 <ion-buttons>
   <ion-button (click)="onCancel()">
  <ion-icon name="close"> 
@@ -34,10 +33,65 @@
           <ion-item>
             <ion-textarea
               type="text"
-              label="Opis"
+              label="Id hrane"
               label-placement="floating"
-              rows="6"
-              ngModel name="upit"
+              rows="1"
+              ngModel name="Id"
+              required
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-textarea
+              type="text"
+              label="Sastojci"
+              label-placement="floating"
+              rows="2"
+              ngModel name="sastojci"
+              required
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row><ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-textarea
+              type="text"
+              label="Kolicina"
+              label-placement="floating"
+              rows="1"
+              ngModel name="kolicina"
+              required
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-textarea
+              type="text"
+              label="URLslike"
+              label-placement="floating"
+              rows="2"
+              ngModel name="url"
+              required
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-textarea
+              type="text"
+              label="Tip Hrane"
+              label-placement="floating"
+              rows="1"
+              ngModel name="tip"
               required
             ></ion-textarea>
           </ion-item>
@@ -51,7 +105,7 @@
             color="primary"
             expand="block"
             [disabled]="f.invalid">
-            Pošalji upit
+            Dodaj hranu
           </ion-button>
         </ion-col>
       </ion-row>

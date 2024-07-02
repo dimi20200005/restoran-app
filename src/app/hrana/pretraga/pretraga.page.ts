@@ -23,6 +23,10 @@ export class PretragaPage implements OnInit {
 
   ngOnInit() {
     this.filteredHrana = this.hrana;
+    this.hranaService.hrane.subscribe((hrana) => {
+      this.hrana = hrana; // Postavljanje novih podataka hrane na postojeći niz
+    });
+  
   }
   filterItems() {
     const searchTermLower = this.searchTerm.toLowerCase();
@@ -40,24 +44,16 @@ export class PretragaPage implements OnInit {
   }
 
 
-  openModal(){
-  this.modalCtrl.create({
-  component: HranaModalComponent,
-  componentProps: {title: "Upit za hranu"}
-
-  }).then((modal: HTMLIonModalElement)=>{
-    modal.present();
-    return modal.onDidDismiss();
-  }).then((resultData) =>{
-    if (resultData.role === 'confirm'){
-      console.log(resultData);
-      this.hranaService.addHrana(resultData.data.hranaData.naziv, resultData.data.hranaData.upit).subscribe((res: any)=>{
-        console.log(res);
-      });
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: HranaModalComponent,
+      componentProps: { title: 'Dodaj hranu' }
+    });
+    await modal.present();
+    const resultData = await modal.onDidDismiss();
+    if (resultData.role === 'confirm') {
+      const { naziv, sastojci, kolicina, imageUrl, tipHrane } = resultData.data.hranaData;
+      this.hranaService.addHrana(naziv, sastojci, kolicina, imageUrl, tipHrane).subscribe();
     }
-
   }
-
-  );
- }
 }

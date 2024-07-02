@@ -47,7 +47,7 @@ export class AuthService {
     return this._user.asObservable().pipe(
       map((user)=>{
         if(user){
-          return !!user.id;
+          return user.id;
         }else{
           return null;
         }
@@ -69,7 +69,7 @@ export class AuthService {
     return this._user.asObservable().pipe(
       map((user)=>{
         if(user){
-          return user.getToken;
+          return user.getToken();
         }else{
           return null;
         }
