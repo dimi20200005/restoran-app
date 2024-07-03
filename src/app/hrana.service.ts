@@ -78,7 +78,7 @@ export class HranaService {
     return this._hrana.asObservable();
   }
 
-  addHrana(id:string,naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
+  addHrana(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
     let newHrana: Hrana;
     return this.authService.userId.pipe(
       take(1),
@@ -93,15 +93,17 @@ export class HranaService {
         );
       }),
       switchMap(resData => {
-        newHrana.id = resData.name;
-        return this.hrane;
-      }),
-      take(1),
-      tap(hrane => {
-        this._hrana.next([...this._hrana.value, newHrana]);
+        newHrana.id = resData.name; // Postavite ID koji je generisala baza
+        return this.hrane.pipe(
+          take(1),
+          tap(hrane => {
+            this._hrana.next([...this._hrana.value, newHrana]);
+          })
+        );
       })
     );
   }
+  
 
   getHrane() {
     return this.http.get<{ [key: string]: HranaData }>('https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana.json')
@@ -131,34 +133,55 @@ export class HranaService {
   getHrana(id: string) {
     return this._hrana.value.find((h: Hrana) => h.id === id);
   }
-  izmeniHranu(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
-    let updatedHrana: Hrana;
-    const hranaIndex = this._hrana.value.findIndex(h => h.id === id);
-    if (hranaIndex >= 0) {
-      updatedHrana = { ...this._hrana.value[hranaIndex], naziv, sastojci, kolicina, imageUrl, tipHrane };
-      const updatedHrane = [...this._hrana.value];
-      updatedHrane[hranaIndex] = updatedHrana;
-      this._hrana.next(updatedHrane);
 
-      return this.http.put(
-        `https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${id}.json`,
-        { ...updatedHrana, id: null }
-      );
-    } else {
-      console.error('Hrana not found');
-      return throwError('Hrana not found');
-    }
+  
+  izmeniHranu(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
+    return this.authService.userId.pipe(
+      take(1),
+      switchMap(userId => {
+        if (!userId) {
+          throw new Error('User not authenticated');
+        }
+        
+        const hranaIndex = this._hrana.value.findIndex(h => h.id === id);
+        if (hranaIndex < 0) {
+          throw new Error('Hrana not found');
+        }
+  
+        const updatedHrana = { ...this._hrana.value[hranaIndex], naziv, sastojci, kolicina, imageUrl, tipHrane };
+        return this.http.put(
+          `https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${id}.json`,
+          { ...updatedHrana, id: null }
+        ).pipe(
+          tap(() => {
+            const updatedHrane = [...this._hrana.value];
+            updatedHrane[hranaIndex] = updatedHrana;
+            this._hrana.next(updatedHrane);
+          })
+        );
+      })
+    );
   }
   
-  deleteHrana(id: string) {
-    return this.http.delete(`https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${id}.json`)
-      .pipe(
-        switchMap(() => {
-          return this.hrane.pipe(take(1));
-        }),
-        tap(hrane => {
-          this._hrana.next(hrane.filter(h => h.id !== id));
-        })
-      );
+  
+  deleteHrana(hranaId: string) {
+    return this.authService.userId.pipe(
+      take(1),
+      switchMap(userId => {
+        if (!userId) {
+          throw new Error('User not authenticated');
+        }
+        return this.http.delete(
+          `https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${hranaId}.json`
+        );
+      }),
+      switchMap(() => {
+        return this.hrane;
+      }),
+      take(1),
+      tap(hrane => {
+        this._hrana.next(hrane.filter(hrana => hrana.id !== hranaId));
+      })
+    );
   }
 }

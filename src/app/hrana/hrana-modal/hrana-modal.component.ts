@@ -37,7 +37,6 @@ export class HranaModalComponent implements OnInit {
     this.modalCtrl.dismiss(
       {
         hranaData: {
-            id: this.form.value.id,
             naziv: this.form.value.naziv,
             sastojci: this.form.value.sastojci,
             kolicina: this.form.value.kolicina,
