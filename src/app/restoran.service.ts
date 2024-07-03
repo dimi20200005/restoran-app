@@ -53,11 +53,11 @@ export class RestoranService {
     },
     {
       id: 'r6',
-      naziv: 'Amci',
+      naziv: 'Amici',
       lokacija: 'Nebojšina 8, Beograd',
       slikaUrl: 'https://www.011info.com/uploads/Firma/2011/12/26/18397/2a.jpg',
       ocena: 4.7,
-      brojOcena: 89,
+      brojOcena: 10,
       sajt: 'https://www.amicirestoran.rs/'
     },
     {

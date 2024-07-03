@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, NavController } from '@ionic/angular';
 import { Restoran } from '../restorani/restoran.model';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
 import { Hrana } from '../hrana/hrana.model';
@@ -15,7 +15,7 @@ export class RestoraniHraneComponent implements OnInit {
   @Input() restorani: Restoran[] = [];
   @Input() hrana: Hrana | undefined;
 
-  constructor(private modalController: ModalController, private alertCtrl: AlertController, private korpaService: KorpaService) { }
+  constructor(private modalController: ModalController, private alertCtrl: AlertController, private korpaService: KorpaService,private navBar:NavController) { }
 
   closeModal() {
     this.modalController.dismiss();
@@ -35,8 +35,10 @@ export class RestoraniHraneComponent implements OnInit {
         {
           text: 'Dodaj',
           handler: () => {
-            if (this.hrana != undefined)
+            if (this.hrana != undefined){
               this.dodajUKorpu(restoran, this.hrana);
+            this.navBar.navigateForward('/');   
+            }       
           }
         },
         {

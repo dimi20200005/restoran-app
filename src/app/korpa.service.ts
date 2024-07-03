@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hrana } from './hrana/hrana.model';
+import { NavController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,12 @@ export class KorpaService {
   private korpa: Hrana[] = [];
   private ukupnaCena: number = 0;
 
-  constructor() { }
+  constructor(public navController: NavController) { }
 
   dodajUKorpu(hrana: Hrana) {
     this.korpa.push({ ...hrana }); // Dublja kopija objekta hrane
     this.azurirajUkupnuCenu();
+    this.navController.navigateRoot('/hrana/tabs/pretraga');
   }
 
   getKorpa() {

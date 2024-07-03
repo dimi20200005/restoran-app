@@ -123,4 +123,15 @@ export class AuthService {
     }
     return errorMessage;
   }
+  get userEmail() {
+    return this._user.asObservable().pipe(
+      map(user => {
+        if (user) {
+          return user.email;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
 }
