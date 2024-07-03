@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { HranaService } from 'src/app/hrana.service';
 import { HranaModalComponent } from '../../hrana-modal/hrana-modal.component';
 import { ModalController } from '@ionic/angular';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class HranaInfoPage implements OnInit {
       tipHrane:''
     }
   ;
-  constructor(private route: ActivatedRoute, private hranaService: HranaService,private navCtrl: NavController,private modalCtrl: ModalController,) { }
+  constructor(private route: ActivatedRoute, private hranaService: HranaService,private navCtrl: NavController,private modalCtrl: ModalController,public authService: AuthService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
