@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { HranaPageRoutingModule } from './hrana-routing.module';
 
 import { HranaPage } from './hrana.page';
+import { HranaModalDodajComponent } from './hrana-modal-dodaj/hrana-modal-dodaj.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HranaPageRoutingModule
+    HranaPageRoutingModule,
+    
+
   ],
-  declarations: [HranaPage]
+  declarations: [HranaPage,HranaModalDodajComponent]
 })
 export class HranaPageModule {}

@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      {{ hrana ? 'Izmeni hranu' : 'Dodaj hranu' }}
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="onCancel()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+<ion-title>
+Dodaj hranu</ion-title>
+<ion-buttons>
+  <ion-button (click)="onCancel()">
+ <ion-icon name="close"> 
+
+ </ion-icon>
+  </ion-button>
+</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -19,10 +20,9 @@
           <ion-item>
             <ion-input
               type="text"
-              label="Id hrane"
-              label-position="floating"
-              [ngModel]="hrana.id"
-              name="id"
+              label="Naziv hrane"
+              label-placement="floating"
+              ngModel name="naziv"
               required
             ></ion-input>
           </ion-item>
@@ -31,15 +31,14 @@
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
-            <ion-input
+            <ion-textarea
               type="text"
-              label="Naziv hrane"
-              label-position="floating"
-              [ngModel]="hrana.naziv"
-              (ngModelChange)="hrana.naziv = $event"
-              name="naziv"
+              label="Id hrane"
+              label-placement="floating"
+              rows="1"
+              ngModel name="Id"
               required
-            ></ion-input>
+            ></ion-textarea>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -49,10 +48,22 @@
             <ion-textarea
               type="text"
               label="Sastojci"
-              label-position="floating"
-              [ngModel]="hrana.sastojci"
-              (ngModelChange)="hrana.sastojci = $event"
-              name="sastojci"
+              label-placement="floating"
+              rows="2"
+              ngModel name="sastojci"
+              required
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row><ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-textarea
+              type="text"
+              label="Kolicina"
+              label-placement="floating"
+              rows="1"
+              ngModel name="kolicina"
               required
             ></ion-textarea>
           </ion-item>
@@ -63,11 +74,10 @@
           <ion-item>
             <ion-textarea
               type="text"
-              label="Količina"
-              label-position="floating"
-              [ngModel]="hrana.kolicina"
-              (ngModelChange)="hrana.kolicina = $event"
-              name="kolicina"
+              label="URLslike"
+              label-placement="floating"
+              rows="2"
+              ngModel name="url"
               required
             ></ion-textarea>
           </ion-item>
@@ -78,40 +88,24 @@
           <ion-item>
             <ion-textarea
               type="text"
-              label="URL slike"
-              label-position="floating"
-              [ngModel]="hrana.imageUrl"
-              (ngModelChange)="hrana.imageUrl = $event"
-              name="imageUrl"
+              label="Tip Hrane"
+              label-placement="floating"
+              rows="1"
+              ngModel name="tip"
               required
             ></ion-textarea>
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col size-sm="6" offset-sm="3">
-          <ion-item>
-            <ion-textarea
-              type="text"
-              label="Tip hrane"
-              label-position="floating"
-              [ngModel]="hrana.tipHrane"
-              (ngModelChange)="hrana.tipHrane = $event"
-              name="tipHrane"
-              required
-            ></ion-textarea>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
           <ion-button
             type="submit"
             color="primary"
             expand="block"
-            [disabled]="!f.valid"
-          >
-            {{ hrana ? 'Izmeni hranu' : 'Dodaj hranu' }}
+            [disabled]="f.invalid">
+            Dodaj hranu
           </ion-button>
         </ion-col>
       </ion-row>

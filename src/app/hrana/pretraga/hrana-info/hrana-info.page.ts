@@ -3,6 +3,8 @@ import { Hrana } from "../../hrana.model";
 import { ActivatedRoute } from "@angular/router";
 import { NavController } from '@ionic/angular';
 import { HranaService } from 'src/app/hrana.service';
+import { HranaModalComponent } from '../../hrana-modal/hrana-modal.component';
+import { ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class HranaInfoPage implements OnInit {
       tipHrane:''
     }
   ;
-  constructor(private route: ActivatedRoute, private hranaService: HranaService,private navCtrl: NavController,) { }
+  constructor(private route: ActivatedRoute, private hranaService: HranaService,private navCtrl: NavController,private modalCtrl: ModalController,) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
@@ -39,9 +41,20 @@ export class HranaInfoPage implements OnInit {
     });
   }
 
-
+  async openIzmeniModal() {
+    const modal = await this.modalCtrl.create({
+      component: HranaModalComponent,
+      componentProps: { hrana: this.hrana }
+    });
+    await modal.present();
+    const resultData = await modal.onDidDismiss();
+    if (resultData.role === 'confirm') {
+      const { id, naziv, sastojci, kolicina, imageUrl, tipHrane } = resultData.data.hranaData;
+      this.hranaService.izmeniHranu(id, naziv, sastojci, kolicina, imageUrl, tipHrane).subscribe();
+    }
+  }
 onIzmeni() {
-  
+  this.openIzmeniModal();
 }
 
 onDelete() {

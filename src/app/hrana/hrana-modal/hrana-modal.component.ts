@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { Hrana } from '../hrana.model'
 
 @Component({
   selector: 'app-hrana-modal',
@@ -10,10 +11,24 @@ import { ModalController } from '@ionic/angular';
 export class HranaModalComponent implements OnInit {
   @ViewChild('f', { static: true })
   form!: NgForm;
-  // @Input() title: string;
+  @Input()
+  hrana!: Hrana;
   constructor(private modalCtrl: ModalController) { }
 
-  ngOnInit() { }
+  ngOnInit() {this.initializeForm(); }
+  initializeForm() {
+    
+    if (this.hrana) {
+      this.form.setValue({
+        naziv: this.hrana.naziv,
+        id: this.hrana.id,
+        sastojci: this.hrana.sastojci,
+        kolicina: this.hrana.kolicina,
+        imageUrl: this.hrana.imageUrl,
+        tipHrane: this.hrana.tipHrane,
+      });
+    }
+  }
   onCancel() {
     this.modalCtrl.dismiss();
   }
@@ -22,11 +37,12 @@ export class HranaModalComponent implements OnInit {
     this.modalCtrl.dismiss(
       {
         hranaData: {
+            id: this.form.value.id,
             naziv: this.form.value.naziv,
             sastojci: this.form.value.sastojci,
             kolicina: this.form.value.kolicina,
-            imageUrl: this.form.value.url,
-            tipHrane: this.form.value.tip
+            imageUrl: this.form.value.imageUrl,
+            tipHrane: this.form.value.tipHrane
         }
       },
       'confirm'

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Hrana } from './hrana/hrana.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map, switchMap, take, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap, take, tap, throwError } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 
 interface HranaData{
@@ -78,7 +78,7 @@ export class HranaService {
     return this._hrana.asObservable();
   }
 
-  addHrana(naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
+  addHrana(id:string,naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
     let newHrana: Hrana;
     return this.authService.userId.pipe(
       take(1),
@@ -127,9 +127,29 @@ export class HranaService {
         })
       );
   }
+
   getHrana(id: string) {
     return this._hrana.value.find((h: Hrana) => h.id === id);
   }
+  izmeniHranu(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
+    let updatedHrana: Hrana;
+    const hranaIndex = this._hrana.value.findIndex(h => h.id === id);
+    if (hranaIndex >= 0) {
+      updatedHrana = { ...this._hrana.value[hranaIndex], naziv, sastojci, kolicina, imageUrl, tipHrane };
+      const updatedHrane = [...this._hrana.value];
+      updatedHrane[hranaIndex] = updatedHrana;
+      this._hrana.next(updatedHrane);
+
+      return this.http.put(
+        `https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${id}.json`,
+        { ...updatedHrana, id: null }
+      );
+    } else {
+      console.error('Hrana not found');
+      return throwError('Hrana not found');
+    }
+  }
+  
   deleteHrana(id: string) {
     return this.http.delete(`https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${id}.json`)
       .pipe(

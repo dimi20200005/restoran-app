@@ -4,6 +4,7 @@ import { HranaService } from 'src/app/hrana.service';
 import { ModalController } from '@ionic/angular';
 import { HranaModalComponent } from '../hrana-modal/hrana-modal.component';
 import { AuthService } from 'src/app/auth/auth.service';
+import { HranaModalDodajComponent } from '../hrana-modal-dodaj/hrana-modal-dodaj.component';
 
 
 @Component({
@@ -48,14 +49,14 @@ export class PretragaPage implements OnInit {
 
   async openModal() {
     const modal = await this.modalCtrl.create({
-      component: HranaModalComponent,
+      component: HranaModalDodajComponent,
       componentProps: { title: 'Dodaj hranu' }
     });
     await modal.present();
     const resultData = await modal.onDidDismiss();
     if (resultData.role === 'confirm') {
-      const { naziv, sastojci, kolicina, imageUrl, tipHrane } = resultData.data.hranaData;
-      this.hranaService.addHrana(naziv, sastojci, kolicina, imageUrl, tipHrane).subscribe();
+      const { id,naziv, sastojci, kolicina, imageUrl, tipHrane } = resultData.data.hranaData;
+      this.hranaService.addHrana(id,naziv, sastojci, kolicina, imageUrl, tipHrane).subscribe();
     }
   }
 }
