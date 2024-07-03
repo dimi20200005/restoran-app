@@ -55,8 +55,8 @@ export class PretragaPage implements OnInit {
     await modal.present();
     const resultData = await modal.onDidDismiss();
     if (resultData.role === 'confirm') {
-      const { id,naziv, sastojci, kolicina, imageUrl, tipHrane } = resultData.data.hranaData;
-      this.hranaService.addHrana(id,naziv, sastojci, kolicina, imageUrl, tipHrane).subscribe();
+      const { id,naziv, sastojci, kolicina, imageUrl, tipHrane,cena } = resultData.data.hranaData;
+      this.hranaService.addHrana(id,naziv, sastojci, kolicina, imageUrl, tipHrane,cena).subscribe();
     }
   }
 }

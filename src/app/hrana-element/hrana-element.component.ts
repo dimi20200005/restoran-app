@@ -17,7 +17,8 @@ export class HranaElementComponent implements OnInit {
     kolicina: '550g',
     imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg',
     userId:'',
-    tipHrane:''
+    tipHrane:'',
+    cena: 0
   };
 
   constructor(private alertCtrl: AlertController,private modalService: PrikazRestoranaHranaService) { }
@@ -29,7 +30,7 @@ export class HranaElementComponent implements OnInit {
     // Simulating restorani data for demonstration purposes
     let restorani: Restoran[] = [];
    
-      if (hrana.naziv === 'Pasta Carbonara') {
+      if (hrana.tipHrane === 'Italijanska') {
         restorani=[
           {
             id: 'r5',
@@ -49,11 +50,39 @@ export class HranaElementComponent implements OnInit {
             ocena: 4.7,
             brojOcena: 89,
             sajt: 'https://www.amicirestoran.rs/'
+          },
+          {
+            id: 'r7',
+            naziv: 'Pizza bar',
+            lokacija: 'Bulevar Mihajla Pupina 165v, Beograd',
+            slikaUrl: 'https://pizzabar.rs/wp-content/uploads/2022/03/HI_MIC_0424-1.jpg',
+            ocena: 4.1,
+            brojOcena: 190,
+            sajt: 'https://pizzabar.rs/'
+          },
+          {
+            id: 'r8',
+            naziv: 'Bosiljak Pizza Napoletana',
+            lokacija: 'Bežanijska 36, Beograd 11080',
+            slikaUrl: 'https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/cf/c0/03/bosiljak-pizza-napoletana.jpg',
+            ocena: 4.8,
+            brojOcena: 155,
+            sajt: 'https://www.bosiljakpizza.com/'
+          },
+          {
+      
+            id: 'r9',
+            naziv: 'Majstor i Margarita',
+            lokacija: 'Balkanska 16, Belgrade Serbia',
+            slikaUrl: 'https://www.dizajnenterijera.rs/wp-content/uploads/2023/08/picerija-majstor-margarita-beograd-zabriskie-02.jpg',
+            ocena: 4.4,
+            brojOcena:150,
+            sajt: 'https://majstorimargarita.rs/'
           }
     ]
     }
 
-   if(hrana.naziv === 'Burger'){
+   if(hrana.tipHrane === 'Američka'){
     restorani=[
       {
         id: 'r1',
@@ -84,39 +113,8 @@ export class HranaElementComponent implements OnInit {
       }
     ];
   }
-  if(hrana.naziv === 'Capricciosa pica'){
-    restorani=[
-      {
-        id: 'r7',
-        naziv: 'Pizza bar',
-        lokacija: 'Bulevar Mihajla Pupina 165v, Beograd',
-        slikaUrl: 'https://pizzabar.rs/wp-content/uploads/2022/03/HI_MIC_0424-1.jpg',
-        ocena: 4.1,
-        brojOcena: 190,
-        sajt: 'https://pizzabar.rs/'
-      },
-      {
-        id: 'r8',
-        naziv: 'Bosiljak Pizza Napoletana',
-        lokacija: 'Bežanijska 36, Beograd 11080',
-        slikaUrl: 'https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/cf/c0/03/bosiljak-pizza-napoletana.jpg',
-        ocena: 4.8,
-        brojOcena: 155,
-        sajt: 'https://www.bosiljakpizza.com/'
-      },
-      {
   
-        id: 'r9',
-        naziv: 'Majstor i Margarita',
-        lokacija: 'Balkanska 16, Belgrade Serbia',
-        slikaUrl: 'https://www.dizajnenterijera.rs/wp-content/uploads/2023/08/picerija-majstor-margarita-beograd-zabriskie-02.jpg',
-        ocena: 4.4,
-        brojOcena:150,
-        sajt: 'https://majstorimargarita.rs/'
-      }
-    ];
-  }
-  if(hrana.naziv === 'Burrito'){
+  if(hrana.tipHrane === 'Meksička'){
     restorani=[
       {
         id: 'r10',
@@ -139,38 +137,7 @@ export class HranaElementComponent implements OnInit {
       },
     ];
   }
-  if(hrana.naziv === 'Američka palačinka'){
-    restorani=[
-      {
-        id: 'r3',
-        naziv: 'Smash Burgers',
-        lokacija: 'Omladinskih brigada 18b, Belgrade, Serbia',
-        slikaUrl: 'https://www.011info.com/uploads/Firma/2021/07/20/43961/3.jpg',
-        ocena: 4,
-        brojOcena: 160,
-        sajt: 'https://smashburgers.rs/'
-      },
-      {
-        id: 'r4',
-        naziv: 'Mozzarella Osteria',
-        lokacija: 'Uroša Martinovića 31, Novi Beograd',
-        slikaUrl: 'https://mozzarella.rs/wp-content/uploads/2015/07/onama1.jpg',
-        ocena: 4,
-        brojOcena: 130,
-        sajt: 'https://mozzarella.rs/'
-      },
-      {
-        id: 'r5',
-        naziv: 'Casa Nova',
-        lokacija: 'Uroša Martinovića 31, Novi Beograd',
-        slikaUrl: 'https://www.casanova.rs/img/gallery/4.jpg',
-        ocena: 3,
-        brojOcena: 125,
   
-        sajt: 'https://www.casanova.rs/'
-      },
-    ];
-  }
  
   if (restorani.length === 0) {
     console.error('Nema restorana za zadati naziv hrane:', hrana.naziv);

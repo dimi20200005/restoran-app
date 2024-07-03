@@ -22,7 +22,8 @@ export class HranaInfoPage implements OnInit {
       kolicina: '550g',
       imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg',
       userId: '',
-      tipHrane:''
+      tipHrane:'',
+      cena: 0
     }
   ;
   constructor(private route: ActivatedRoute, private hranaService: HranaService,private navCtrl: NavController,private modalCtrl: ModalController,public authService: AuthService) { }
@@ -50,10 +51,10 @@ export class HranaInfoPage implements OnInit {
     await modal.present();
     const resultData = await modal.onDidDismiss();
     if (resultData.role === 'confirm') {
-      const { naziv, sastojci, kolicina, imageUrl, tipHrane } = resultData.data.hranaData;
+      const { naziv, sastojci, kolicina, imageUrl, tipHrane,cena} = resultData.data.hranaData;
       const id = this.hrana.id; 
   
-      this.hranaService.izmeniHranu(id, naziv, sastojci, kolicina, imageUrl, tipHrane).subscribe();
+      this.hranaService.izmeniHranu(id, naziv, sastojci, kolicina, imageUrl, tipHrane,cena).subscribe();
     }
   }
 

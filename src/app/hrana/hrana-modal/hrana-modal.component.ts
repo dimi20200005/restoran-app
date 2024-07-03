@@ -26,6 +26,8 @@ export class HranaModalComponent implements OnInit {
         kolicina: this.hrana.kolicina,
         imageUrl: this.hrana.imageUrl,
         tipHrane: this.hrana.tipHrane,
+        cena: this.hrana.cena,
+
       });
     }
   }
@@ -41,7 +43,9 @@ export class HranaModalComponent implements OnInit {
             sastojci: this.form.value.sastojci,
             kolicina: this.form.value.kolicina,
             imageUrl: this.form.value.imageUrl,
-            tipHrane: this.form.value.tipHrane
+            tipHrane: this.form.value.tipHrane,
+            cena: this.form.value.cena,
+
         }
       },
       'confirm'

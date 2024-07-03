@@ -11,6 +11,7 @@ interface HranaData{
   kolicina:string;
   imageUrl: string;
   tipHrane: string;
+  cena: number
 }
 
 @Injectable({
@@ -28,7 +29,8 @@ export class HranaService {
       kolicina: '550g',
       userId:"",
       imageUrl: 'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Spaghetti-Carbonara-Fifteen-Spatulas-12.jpg',
-      tipHrane: 'Italijanska'
+      tipHrane: 'Italijanska',
+      cena: 200
     },
     {
       id: 'h2',
@@ -37,7 +39,9 @@ export class HranaService {
       kolicina: '700g',
       userId:"",
       imageUrl: 'https://recipes.net/wp-content/uploads/2023/05/hardees-double-cheeseburger-recipe_d48b79ef43b714e98a3ad95a7ab9e12e-768x768.jpeg',
-      tipHrane: 'Američka'
+      tipHrane: 'Američka',
+      cena: 180
+
     },
     {
       id: 'h3',
@@ -46,7 +50,9 @@ export class HranaService {
       kolicina: '30cm',
       userId:"",
       imageUrl: 'https://nova.rs/wp-content/uploads/2023/06/14/1686733247-profimedia-0745843205.jpg',
-      tipHrane: 'Italijanska'
+      tipHrane: 'Italijanska',
+      cena: 300
+
     },
     {
       id: 'h4',
@@ -55,7 +61,9 @@ export class HranaService {
       kolicina: '450g',
       userId:"",
       imageUrl: 'https://cdn.britannica.com/13/234013-050-73781543/rice-and-chorizo-burrito.jpg',
-      tipHrane: 'Meksička'
+      tipHrane: 'Meksička',
+      cena: 150
+
     },
     {
       id: 'h5',
@@ -64,7 +72,9 @@ export class HranaService {
       kolicina: '350g',
       userId:"",
       imageUrl: 'https://fagor.rs/wp-content/uploads/2021/09/americke-palacinke.jpg.webp',
-      tipHrane: 'Američka'
+      tipHrane: 'Američka',
+      cena: 100
+
     },
 
 
@@ -78,7 +88,7 @@ export class HranaService {
     return this._hrana.asObservable();
   }
 
-  addHrana(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
+  addHrana(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string,cena:number) {
     let newHrana: Hrana;
     return this.authService.userId.pipe(
       take(1),
@@ -86,7 +96,7 @@ export class HranaService {
         if (!userId) {
           throw new Error('User not authenticated');
         }
-        newHrana = new Hrana('', naziv, sastojci, kolicina, imageUrl, tipHrane);
+        newHrana = new Hrana('', naziv, sastojci, kolicina, imageUrl, tipHrane,cena);
         return this.http.post<{ name: string }>(
           'https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana.json',
           { ...newHrana, id: null }
@@ -118,7 +128,9 @@ export class HranaService {
                 responseData[key].sastojci,
                 responseData[key].kolicina,
                 responseData[key].imageUrl,
-                responseData[key].tipHrane
+                responseData[key].tipHrane,
+                responseData[key].cena,
+
               ));
             }
           }
@@ -135,7 +147,7 @@ export class HranaService {
   }
 
   
-  izmeniHranu(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string) {
+  izmeniHranu(id: string, naziv: string, sastojci: string, kolicina: string, imageUrl: string, tipHrane: string,cena:number) {
     return this.authService.userId.pipe(
       take(1),
       switchMap(userId => {
@@ -148,7 +160,7 @@ export class HranaService {
           throw new Error('Hrana not found');
         }
   
-        const updatedHrana = { ...this._hrana.value[hranaIndex], naziv, sastojci, kolicina, imageUrl, tipHrane };
+        const updatedHrana = { ...this._hrana.value[hranaIndex], naziv, sastojci, kolicina, imageUrl, tipHrane,cena };
         return this.http.put(
           `https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${id}.json`,
           { ...updatedHrana, id: null }

@@ -27,7 +27,8 @@ export class HranaModalDodajComponent implements OnInit {
             sastojci: this.form.value.sastojci,
             kolicina: this.form.value.kolicina,
             imageUrl: this.form.value.url,
-            tipHrane: this.form.value.tip
+            tipHrane: this.form.value.tip,
+            cena: this.form.value.cena,
         }
       },
       'confirm'

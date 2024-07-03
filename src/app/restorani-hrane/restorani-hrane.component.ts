@@ -61,45 +61,10 @@ export class RestoraniHraneComponent implements OnInit {
     hrana = { ...hrana, restoran: { ...restoran } }; // Dublja kopija objekta hrane i restorana
     console.log("Restoran je ", hrana.restoran);
 
-    if(hrana.restoran?.naziv==="Casa Nova" && hrana.naziv==="Pasta Carbonara"){
-      hrana.cena=650;
-    }
-    if(hrana.restoran?.naziv==="Amci" && hrana.naziv==="Pasta Carbonara"){
-      hrana.cena=1000;
-    }
-    if(hrana.restoran?.naziv==="Burger House Bros" && hrana.naziv==="Burger"){
-      hrana.cena=900;
-    }
-    if(hrana.restoran?.naziv==="Smash Burgers" && hrana.naziv==="Burger"){
-      hrana.cena=810;
-    }
-    if(hrana.restoran?.naziv==="Fat Boys Food co." && hrana.naziv==="Burger"){
-      hrana.cena=690;
-    }
-    if(hrana.restoran?.naziv==="Majstor i Margarita" && hrana.naziv==="Capricciosa pica"){
-      hrana.cena=1200;
-    }
-    if(hrana.restoran?.naziv==="Bosiljak Pizza Napoletana" && hrana.naziv==="Capricciosa pica"){
-      hrana.cena=1090;
-    }
-    if(hrana.restoran?.naziv==="'Pizza bar" && hrana.naziv==="Capricciosa pica"){
-      hrana.cena=1000;
-    }
-    if(hrana.restoran?.naziv==="Burrito Madre" && hrana.naziv==="Burrito"){
-      hrana.cena=590;
-    }
-    if(hrana.restoran?.naziv==="Smash Burgers" && hrana.naziv==="Američka palačinka"){
-      hrana.cena=430;
-    }
-    if(hrana.restoran?.naziv==="Buena Vida" && hrana.naziv==="Burrito"){
-      hrana.cena=890;
-    }
-    if(hrana.restoran?.naziv==="Casa Nova" && hrana.naziv==="Američka palačinka"){
-      hrana.cena=500;
-    }
-    if(hrana.restoran?.naziv==="Mozzarella Osteria" && hrana.naziv==="Američka palačinka"){
-      hrana.cena=390;
-    }
+
+    hrana.cena = (Math.round) (hrana.cena * restoran.ocena);
+
+
     this.korpaService.dodajUKorpu(hrana);
   }
 
