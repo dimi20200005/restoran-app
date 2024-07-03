@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hrana } from "../../hrana.model";
 import { ActivatedRoute } from "@angular/router";
+import { NavController } from '@ionic/angular';
 import { HranaService } from 'src/app/hrana.service';
 
 
@@ -21,7 +22,7 @@ export class HranaInfoPage implements OnInit {
       tipHrane:''
     }
   ;
-  constructor(private route: ActivatedRoute, private hranaService: HranaService) { }
+  constructor(private route: ActivatedRoute, private hranaService: HranaService,private navCtrl: NavController,) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
@@ -37,4 +38,15 @@ export class HranaInfoPage implements OnInit {
       }
     });
   }
+
+
+onIzmeni() {
+  
+}
+
+onDelete() {
+  this.hranaService.deleteHrana(this.hrana.id).subscribe(() => {
+    this.navCtrl.navigateBack('/hrana/tabs/pretraga');
+  });
+}
 }

@@ -127,10 +127,18 @@ export class HranaService {
         })
       );
   }
-
-
-  
   getHrana(id: string) {
-    return this.hrana.find((h:Hrana) => h.id === id);
+    return this._hrana.value.find((h: Hrana) => h.id === id);
+  }
+  deleteHrana(id: string) {
+    return this.http.delete(`https://restoran-app-67582-default-rtdb.europe-west1.firebasedatabase.app/hrana/${id}.json`)
+      .pipe(
+        switchMap(() => {
+          return this.hrane.pipe(take(1));
+        }),
+        tap(hrane => {
+          this._hrana.next(hrane.filter(h => h.id !== id));
+        })
+      );
   }
 }
