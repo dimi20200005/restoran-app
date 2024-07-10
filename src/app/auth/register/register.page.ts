@@ -11,7 +11,7 @@ import { AlertController, AlertInput } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  registerForm!: FormGroup; // Dodajemo '!' modifikator
+  registerForm!: FormGroup;
 
   
   constructor(private authService: AuthService,private loadingCtrl: LoadingController,private router: Router,private alertCtrl : AlertController) { }

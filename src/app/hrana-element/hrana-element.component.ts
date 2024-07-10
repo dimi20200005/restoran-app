@@ -27,7 +27,7 @@ export class HranaElementComponent implements OnInit {
     
   }
   openModal(hrana: Hrana) {
-    // Simulating restorani data for demonstration purposes
+    
     let restorani: Restoran[] = [];
    
       if (hrana.tipHrane === 'Italijanska') {
@@ -142,7 +142,7 @@ export class HranaElementComponent implements OnInit {
   if (restorani.length === 0) {
     console.error('Nema restorana za zadati naziv hrane:', hrana.naziv);
 } else {
-    // Otvaranje modala sa pronađenim restoranima
+    
     this.modalService.openModal(restorani,hrana);
 }  }
   

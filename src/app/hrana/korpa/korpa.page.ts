@@ -20,7 +20,7 @@ export class KorpaPage implements OnInit {
     
   }
   ionViewWillEnter() {
-    // Osvežavanje podataka prilikom ulaska na stranicu
+    
     this.ucitajKorpu();
   }
   ucitajKorpu() {
@@ -44,7 +44,7 @@ export class KorpaPage implements OnInit {
           text: 'Obriši',
           handler: () => {
             this.korpaService.obrisiIzKorpe(hrana);
-            this.ucitajKorpu(); // Ponovno učitavanje korpe nakon brisanja
+            this.ucitajKorpu(); 
             console.log('Stavka je uspešno obrisana iz korpe.');
           }
         }

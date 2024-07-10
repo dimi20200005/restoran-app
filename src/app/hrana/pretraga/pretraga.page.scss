@@ -1,5 +1,5 @@
 .hide-button {
-    display: none !important; /* Sakriva dugme */
+    display: none !important; 
   }
 
   ion-content {
@@ -10,9 +10,9 @@
     display: flex;
     justify-content: space-around;
     position: absolute;
-    bottom: 20px; /* Udaljenost od dna stranice */
+    bottom: 20px; 
     width: 100%;
-    padding: 10px 0; /* Po potrebi dodajte padding */
+    padding: 10px 0; 
     
     a {
       cursor: pointer;

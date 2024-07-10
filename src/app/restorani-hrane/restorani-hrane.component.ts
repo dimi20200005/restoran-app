@@ -60,7 +60,7 @@ export class RestoraniHraneComponent implements OnInit {
   }
 
   dodajUKorpu(restoran: Restoran, hrana: Hrana) {
-    hrana = { ...hrana, restoran: { ...restoran } }; // Dublja kopija objekta hrane i restorana
+    hrana = { ...hrana, restoran: { ...restoran } }; 
     console.log("Restoran je ", hrana.restoran);
 
 

@@ -103,7 +103,7 @@ export class HranaService {
         );
       }),
       switchMap(resData => {
-        newHrana.id = resData.name; // Postavite ID koji je generisala baza
+        newHrana.id = resData.name; 
         return this.hrane.pipe(
           take(1),
           tap(hrane => {
@@ -137,7 +137,7 @@ export class HranaService {
           return hranaArray;
         }),
         tap(hrane => {
-          this._hrana.next([...this.hrana, ...hrane]); // Combine initial data with fetched data
+          this._hrana.next([...this.hrana, ...hrane]); 
         })
       );
   }

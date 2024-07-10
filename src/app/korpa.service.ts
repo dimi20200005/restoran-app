@@ -13,13 +13,13 @@ export class KorpaService {
   constructor(public navController: NavController) { }
 
   dodajUKorpu(hrana: Hrana) {
-    this.korpa.push({ ...hrana }); // Dublja kopija objekta hrane
+    this.korpa.push({ ...hrana }); 
     this.azurirajUkupnuCenu();
     this.navController.navigateRoot('/hrana/tabs/pretraga');
   }
 
   getKorpa() {
-    return this.korpa; // Vraća trenutni sadržaj korpe
+    return this.korpa; 
   }
   obrisiIzKorpe(stavka: Hrana) {
     const index = this.korpa.indexOf(stavka);

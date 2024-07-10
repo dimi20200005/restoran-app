@@ -6,6 +6,6 @@ import { IonicModule } from '@ionic/angular';
 @NgModule({
   declarations: [StarRatingComponent],
   imports: [CommonModule,IonicModule],
-  exports: [StarRatingComponent] // Izvozite komponentu kako bi bila dostupna drugim modulima
+  exports: [StarRatingComponent] 
 })
 export class StarRatingModule2 {}

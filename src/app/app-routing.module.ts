@@ -9,7 +9,7 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
-    path: 'hrana/:hranaId', // Dodajemo ':hranaId' kao deo putanje
+    path: 'hrana/:hranaId', 
     loadChildren: () => import('./hrana/hrana.module').then( m => m.HranaPageModule)
   },
 

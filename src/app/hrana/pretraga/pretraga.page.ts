@@ -14,7 +14,7 @@ import { HranaModalDodajComponent } from '../hrana-modal-dodaj/hrana-modal-dodaj
 })
 export class PretragaPage implements OnInit {
   hrana: Hrana[];
-  searchTerm: string = ''; // Deklaracija searchTerm
+  searchTerm: string = ''; 
   filteredHrana: Hrana[] = [];
   selectedType: string = ''; 
 

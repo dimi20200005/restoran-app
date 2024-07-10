@@ -3,10 +3,10 @@
 }
 
 .star {
-  font-size: 24px; /* Adjust size as needed */
-  width: 24px; /* Adjust size as needed */
-  height: 24px; /* Adjust size as needed */
-  color: #d3d3d3; /* Gray color for empty stars */
+  font-size: 24px; 
+  width: 24px; 
+  height: 24px; 
+  color: #d3d3d3; 
   cursor: pointer;
   background: linear-gradient(90deg, #ff285e 50%, #d3d3d3 50%);
   background-size: 200% 100%;
@@ -14,7 +14,7 @@
   display: inline-block;
   position: relative;
   text-align: center;
-  line-height: 24px; /* Adjust size as needed */
+  line-height: 24px; 
 }
 
 

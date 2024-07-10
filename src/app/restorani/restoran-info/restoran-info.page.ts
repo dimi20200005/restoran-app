@@ -30,7 +30,7 @@ export class RestoranInfoPage implements OnInit {
         if (foundResotran !== undefined) {
           this.restoran = foundResotran;
         } else {
-          // Usluga nije pronađena, možete obraditi ovu situaciju na odgovarajući način
+          
         }
       }
     });

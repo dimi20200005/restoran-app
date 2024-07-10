@@ -32,7 +32,7 @@ export class StarRatingComponent  implements OnInit {
           }
         }
       }
-      console.log('Stars array:', this.stars); // Log for checking stars array
+      console.log('Stars array:', this.stars); 
     }
   
   
@@ -42,7 +42,7 @@ export class StarRatingComponent  implements OnInit {
         let novaOcena = index + 1;
         console.log('nova ocena:', novaOcena);
 
-        // Izračunaj novu prosečnu ocenu
+        
         console.log('stara ocena:', this.rating);
         console.log('broj ocena:', this.brojOcena);
 
